@@ -6,6 +6,8 @@ const log = require('./modules/log');
 const errors = require('./modules/errors');
 const docs = require('./modules/docs');
 
+const admin = require('./modules/admin');
+
 const config = require('../src/config');
 const enums = require('../src/enums');
 
@@ -49,6 +51,8 @@ app.use(express.json());
 app.get('/', (_, res) => {
   res.sendStatus(200);
 });
+
+app.use('/admin', admin.API);
 
 if (config.get(enums.CONFIG_KEYS.ENV) !== enums.ENVS.PRODUCTION) {
   app.use('/docs', docs.API);

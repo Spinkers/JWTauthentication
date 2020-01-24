@@ -1,0 +1,3 @@
+module.exports = {
+  JWT_SECRET: 'F56B4FF8DD45841221E664952E5D2',
+};

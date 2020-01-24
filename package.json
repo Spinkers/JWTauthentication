@@ -1,0 +1,58 @@
+{
+  "name": "@JWT/api",
+  "version": "1.0.0",
+  "description": "Demonstration of how to implement JWT authentication",
+  "private": true,
+  "engines": {
+    "node": ">= 10.16.0",
+    "npm": ">=6.9.0"
+  },
+  "main": "src/index.js",
+  "author": {
+    "name": "Lucas Mourão Lopes",
+    "email": "lucasmouraolopes@gmail.com",
+    "url": "https://github.com/Spinkers"
+  },
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "nodemon -e js,json,yaml --signal SIGINT ./bin/www.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
+    "lint-staged": "eslint --fix",
+    "format": "prettier --write \"**/*.+(js|json|yml|yaml|md)\"",
+    "format-staged": "prettier --write",
+    "create-db": "sequelize db:create --charset utf8mb4 --collate utf8mb4_general_ci"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "convict": "^5.2.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "mysql2": "^1.7.0",
+    "pino": "^5.13.5",
+    "sequelize": "^5.21.2",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.1",
+    "nodemon": "^1.19.3",
+    "pino-pretty": "^3.3.0",
+    "prettier": "^1.18.2",
+    "sequelize-cli": "^5.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

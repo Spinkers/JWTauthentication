@@ -1,0 +1,48 @@
+components:
+  errors:
+    badRequest:
+      description: Happens when the user makes a bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: 'The field must be a number'
+                    key:
+                      type: string
+                      example: 'id'
+                    type:
+                      type: string
+                      example: 'number.base'
+
+    unauthorized:
+      description: Incorrect username or password
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: 'Incorrect username or password'
+
+    notFound:
+      description: Happens when the server cannot find the requested data in the database.
+      content:
+        schema:
+          type: string
+          example: 'Not Found'
+
+    internalServerError:
+      description: Happens when there is an internal error
+      content:
+        schema:
+          type: string
+          example: 'Internal Server Error'

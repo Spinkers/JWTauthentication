@@ -1,5 +1,0 @@
-{
-    "*.+(js)": ["npm run lint-staged", "git add"],
-    "*.+(json|md|yml|yaml)": ["npm run format-staged", "git add"]
-  }
-  

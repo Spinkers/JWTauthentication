@@ -16,11 +16,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "nodemon -e js,json,yaml --signal SIGINT ./bin/www.js",
-    "lint": "eslint .",
-    "lint-fix": "eslint --fix .",
-    "lint-staged": "eslint --fix",
-    "format": "prettier --write \"**/*.+(js|json|yml|yaml|md)\"",
-    "format-staged": "prettier --write",
     "create-db": "sequelize db:create --charset utf8mb4 --collate utf8mb4_general_ci"
   },
   "dependencies": {
@@ -41,23 +36,8 @@
     "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-security": "^1.4.0",
-    "husky": "^3.0.8",
-    "lint-staged": "^9.4.1",
     "nodemon": "^1.19.3",
     "pino-pretty": "^3.3.0",
-    "prettier": "^1.18.2",
     "sequelize-cli": "^5.5.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  }
 }

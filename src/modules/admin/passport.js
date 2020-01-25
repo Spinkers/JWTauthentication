@@ -21,7 +21,7 @@ passport.use(
         try {
           userModel = await user.findOne({
             where: { id: payload.id },
-            attributes: ['id', 'username', 'password'],
+            attributes: ['id', 'username'],
           });
         } catch (err) {
           throw new errors.DatabaseError(err);

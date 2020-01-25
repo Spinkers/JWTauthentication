@@ -39,5 +39,5 @@
     "nodemon": "^1.19.3",
     "pino-pretty": "^3.3.0",
     "sequelize-cli": "^5.5.1"
-  },
+  }
 }

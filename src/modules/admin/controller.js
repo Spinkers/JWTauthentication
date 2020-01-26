@@ -21,9 +21,4 @@ module.exports = {
     console.log('It works!');
     res.json({ message: 'It works!' });
   },
-
-  login: async (req, res) => {
-    console.log('It works!');
-    res.json({ message: 'It works!' });
-  },
 };

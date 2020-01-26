@@ -46,7 +46,7 @@ passport.use(
     },
     async (username, password, done) => {
       try {
-        // Find the user given the email
+        // Find the user given the username
         let userModel;
         try {
           userModel = await user.findOne({

@@ -5,7 +5,6 @@ const { ExtractJwt } = require('passport-jwt');
 const LocalStrategy = require('passport-local').Strategy;
 const { JWT_SECRET } = require('./config');
 const { user } = require('../database');
-const errors = require('../errors');
 
 // JSON WEB TOKENS STRATEGYS
 passport.use(
@@ -24,7 +23,7 @@ passport.use(
             attributes: ['id', 'username'],
           });
         } catch (err) {
-          throw new errors.DatabaseError(err);
+          throw new error(err);
         }
         // If user doesn't exists, handle it
         if (!userModel) {
@@ -56,7 +55,7 @@ passport.use(
             attributes: ['id', 'username', 'password'],
           });
         } catch (err) {
-          throw new errors.DatabaseError(err);
+          throw new error(err);
         }
         // If not, handle it
         if (!userModel) {

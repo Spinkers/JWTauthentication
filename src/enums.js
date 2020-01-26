@@ -21,18 +21,5 @@ module.exports = Object.seal({
       PRODUCTION: 'production',
       TEST: 'test',
     },
-  
-    HTTP_STATUS: {
-      BAD_REQUEST: 400,
-      INTERNAL_SERVER_ERROR: 500,
-      NOT_FOUND: 404,
-    },
-  
-    SEARCH_MODE: {
-      EQUAL: 1,
-      STARTS_WITH: 2,
-      ENDS_WITH: 3,
-      CONTAINS: 4,
-    },
   });
   

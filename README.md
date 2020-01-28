@@ -25,6 +25,8 @@ O funcionamento é bastante simples:
 ##### É possível descriptografar o token e ter acesso as informações contidas nele?
 :unlock: O token em si não é criptografado, você pode visualizar as informações contidas nele acessando: https://jwt.io/
 
+![Visualizando informações](./img/03.png)
+
 :key: Mas existe uma chave de assinatura contida no servidor, essa chave serve para assinar o token, de modo que se alguém tentar enviar um token falsificado, o servidor terá como verificar que aquele token não é verídico.
 
 # Principais dependências
@@ -58,7 +60,7 @@ Tudo começa com o registro de um usuário:
 ![Registro de usuário](./img/00.png)
 
 Depois disso, podemos logar com usuário e senha:
-![image 01](./img/01.png)
+![Login de usuário](./img/01.png)
 
 Como podemos observar, o usuário dispara uma requisição para o servidor enviando usuário e senha, antes desses dados serem entregues ao controller, eles passam por um middlware:
 ```js
@@ -160,7 +162,7 @@ JWT_SECRET=d65sf4-6sd5f4-6vs1v-s65s4x
 **Bearer**: É necessário que o token seja concatenado com o prefixo *Bearer* antes de ser enviado ao front-end, pois o *Bearer* indica que está sendo trafegado um token e não um usuário e senha, que é o caso da flag *Basic*.
 
 Com o token em mãos, o front-end o enviará nos headers das próximas requisições:
-![image 01](./img/02.png)
+![Autenticação de usuário](./img/02.png)
 
 O objetivo de enviar o token na requisição é verificar se aquele usuário é autentico e se tem permissão para acessar tal rota.
 

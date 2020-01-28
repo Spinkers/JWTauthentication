@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const LocalStrategy = require('passport-local').Strategy;
-const { JWT_SECRET } = require('./config');
+const config = require('../../config');
 const { user } = require('../database');
 
 const initialize = passport.initialize();
@@ -13,7 +13,7 @@ const configStrategies = () => {
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('authorization'),
-        secretOrKey: JWT_SECRET,
+        secretOrKey: config.get('authenticate'),
       },
       async (payload, done) => {
         // Find the user specified in token

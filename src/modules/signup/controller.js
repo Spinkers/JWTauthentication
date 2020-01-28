@@ -1,5 +1,3 @@
-const JWT = require('jsonwebtoken');
-const { JWT_SECRET } = require('../auth/config');
 const service = require('./service');
 
 module.exports = {

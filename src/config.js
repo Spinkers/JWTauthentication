@@ -66,6 +66,12 @@ const config = convict({
       },
     },
   },
+  authenticate: {
+    doc: 'This is a key to dealing with tokens',
+    format: String,
+    default: 'd65sf4-6sd5f4-6vs1v-s65s4x',
+    env: 'JWT_SECRET',
+  },
 });
 
 // Enable config override using scoped config files

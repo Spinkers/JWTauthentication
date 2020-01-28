@@ -145,7 +145,7 @@ authenticate: {
 Fizemos isso pois não é legal que algo tão senssível esteja no meio do código, senão qualquer um que tenha acesso ao código poderia ter acesso ao SECRET_KEY.
 
 Vale lembrar também, que o SECRET_KEY deve ser chamado no arquivo .env para que funcione:
-```js
+```
 NODE_ENV=development
 JWT_PORT=3000
 JWT_DB_NAME=databaseTest

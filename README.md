@@ -40,10 +40,8 @@ O funcionamento é bastante simples:
     - Biblioteca utilizada para gerar, verificar, decodificar o token.
   - Bcrypt
     - Biblioteca utilizada para criptografar as senhas do banco
-  - JOI
-    - Biblioteca utilizada para fazer validações
 
-:warning: NOTA: A biblioteca Bcrypt, JOI, dotEnv e Convict não são exatamente necessárias para a implementação da autenticação JWT em si, mas são importantes, seguindo exatamente essa estrutura de API, o projeto poderá ser fácilmente adaptado para ser lançado em produção, ele é minimalista com enfase em demonstrar o JWT, mas também contem algumas boas práticas de organização e segurança. 
+:warning: NOTA: A biblioteca Bcrypt, dotEnv e Convict não são exatamente necessárias para a implementação da autenticação JWT em si, mas são importantes, seguindo exatamente essa estrutura de API, o projeto poderá ser fácilmente adaptado para ser lançado em produção, ele é minimalista com enfase em demonstrar o JWT, mas também contem algumas boas práticas de organização e segurança. 
 
 ##### Comando para iniciar o projeto:
 

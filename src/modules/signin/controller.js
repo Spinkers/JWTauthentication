@@ -10,7 +10,7 @@ module.exports = {
       {
         user,
       },
-      config.get('authenticate'), { expiresIn: '1h' } // Expires in 1h
+      config.get('authentication.jwtSecret'), { expiresIn: '1h' } // Expires in 1h
     );
 
     res.json({ token: `bearer ${token}`, username: user.username });

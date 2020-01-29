@@ -118,7 +118,7 @@ signIn: (req, res) => {
       {
         user,
       },
-      config.get('authenticate'), { expiresIn: '1h' } // Expires in 1h
+      config.get('authentication.jwtSecret'), { expiresIn: '1h' } // Expires in 1h
     );
 
     res.json({ token: `bearer ${token}`, username: user.username });
@@ -131,15 +131,17 @@ Tempo de duração do token:
 ```
 SECRET_KEY:
 ```js
-config.get('authenticate')
+config.get('authentication.jwtSecret')
 ```
 Aqui vale uma breve explicação sobre o SECRET_KEY, que é a chave de assinatura do token conforme já falamos no início deste arquivo, nesse caso armazenamos o SECRET_KEY dentro do arquivo do convict: *src/config.js*.
 ```js
-authenticate: {
-    doc: 'This is a key to dealing with tokens',
-    format: String,
-    default: 'd65sf4-6sd5f4-6vs1v-s65s4x',
-    env: 'JWT_SECRET',
+authentication: {
+    jwtSecret: {
+      doc: 'This is a key to dealing with tokens',
+      format: String,
+      default: null,
+      env: 'JWT_SECRET',
+    },
   },
 ```
 Fizemos isso pois não é legal que algo tão senssível esteja no meio do código, senão qualquer um que tenha acesso ao código poderia ter acesso ao SECRET_KEY.
@@ -176,7 +178,7 @@ Dessa vez utilizamos a estratégica JWT:
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('authorization'),
-        secretOrKey: config.get('authenticate'),
+        secretOrKey: config.get('authentication.jwtSecret'),
       },
       async (payload, done) => {
         // Find the user specified in token

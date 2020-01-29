@@ -13,7 +13,7 @@ const configStrategies = () => {
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('authorization'),
-        secretOrKey: config.get('authenticate'),
+        secretOrKey: config.get('authentication.jwtSecret'),
       },
       async (payload, done) => {
         // Find the user specified in token

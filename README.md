@@ -43,8 +43,20 @@ O funcionamento é bastante simples:
 
 :warning: NOTA: A biblioteca Bcrypt, dotEnv e Convict não são exatamente necessárias para a implementação da autenticação JWT em si, mas são importantes, seguindo exatamente essa estrutura de API, o projeto poderá ser fácilmente adaptado para ser lançado em produção, ele é minimalista com enfase em demonstrar o JWT, mas também contem algumas boas práticas de organização e segurança. 
 
-##### Comando para iniciar o projeto:
-
+##### Primeiros passos:
+Execute as migrations:
+```sh
+$ npx sequelize db:migrate
+```
+Execute as seeds:
+```sh
+$ npx sequelize db:seed:all
+```
+Instale as dependências:
+```sh
+$ npm i
+```
+Inicie o projeto:
 ```sh
 $ npm start
 ```

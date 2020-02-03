@@ -219,3 +219,106 @@ Em caso de sucesso, estamos autenticados e podemos seguir para o controller, ao 
     res.json({ message: 'It works!' });
   },
 ```
+##### Testes
+Julguei importante demonstrar alguns testes básicos referentes a autenticação JWT neste repositório, afinal de contas, se você está procurando aprender sobre JWT, uma hora ou outra terá que testar tal funcionalidade.
+
+Para tal, utilizamos as bibliotecas Jest e SuperTest
+Inicie o projeto:
+```sh
+$ npm install jest supertest --save-dev
+```
+Caso você nunca tenha feito nada com testes, recomendo que acesse [este repositório:](https://github.com/Spinkers/javascript-jest) https://github.com/Spinkers/javascript-jest
+Ele também é autoexplicativo.
+
+Para rodar os testes use:
+```sh
+$ npm test
+```
+![Testes](./img/04.png)
+
+O teste de cadastro é simples, não há muito o que demonstrar, basicamente enviamos o usuário e senha via **post** e aguardamos uma mensagem de sucesso.
+```js
+it('should responds with json and statusCode 201', async () => {
+        const response = {
+            message: 'Success!'
+        };
+
+        const user = {
+            username: 'USUARIO',
+            password: '12345678',
+        };
+
+        db.user.create.mockReturnValue({
+            get: jest.fn().mockReturnValue(response),
+        });
+
+      const res = await superTeste(app)
+        .post('/signup')
+        .send(user);
+
+      expect(res.statusCode).toStrictEqual(201);
+      expect(res.body).toStrictEqual(response);
+    });
+```
+O teste de login é mais interessante para quem está interessado em JWT, primeiro fazemos o mock da resposta da função findOne, que é constituída essencialmente por **username** e **password**, depois disso enviamos os parametros requeridos no corpo da requisição (que também é usuário e senha) desta forma:
+```js
+const res = await superTeste(app).post('/signin').send({
+  username: 'Lucas',
+  password: '12345678',
+});
+```
+No fim deste processo esperamos que o objeto de resposta contenha um **token** e um **username**, neste caso não podemos passar um objeto com propriedades fixas, pois a cada vez o token retornado seria diferente.
+```js
+it('should return an json with token and username', async () => {
+        const mockUser = {
+          id: 1,
+          username: 'Lucas',
+          password: '$2b$12$nT/8GO9Ei1dPo0ylr6FD6e/rj.aQTheVl3/1AH3AZwyjz4hmvmDZC',
+        };
+
+        db.user.findOne.mockReturnValue({
+            get: jest.fn().mockReturnValue(mockUser),
+        });
+
+        const res = await superTeste(app).post('/signin').send({
+          username: 'Lucas',
+          password: '12345678',
+        });
+
+        const mockBodyResponse = {
+          token: res.body.token,
+          username: res.body.username,
+        }
+        
+        expect(res.statusCode).toStrictEqual(200);
+        expect(res.body).toStrictEqual(mockBodyResponse);
+    });
+```
+O teste de autenticação, apesar de simples, é super interessante, neste caso simplesmente enviamos o token no header da requisição desta forma:
+```js
+const res = await superTeste(app).get('/dashboard').set('Authorization', token);
+```
+Código completo:
+```js
+it('should responds with json and statusCode 200', async () => {
+      const token =
+        'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluIn0sImlhdCI6MTU4MDc0MzM3OX0.kWqyYtYosb4wMaiaGjn_4TurMqcyZkGZz3lZQM__ClM';
+
+        const response = {
+            message: 'It works!'
+        }
+
+        db.user.findOne.mockReturnValue({
+            get: jest.fn().mockReturnValue(response),
+        });
+
+      const res = await superTeste(app)
+        .get('/dashboard')
+        .set('Authorization', token);
+
+        expect(res.statusCode).toStrictEqual(200);
+        expect(res.body).toStrictEqual(response);
+    });
+```
+
+I hope you enjoy!

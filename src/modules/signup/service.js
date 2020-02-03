@@ -2,7 +2,7 @@ const { user } = require('../database');
 const bcrypt = require('bcrypt');
 
 module.exports = {
-  findAll: async (username, password) => {
+  insertOne: async (username, password) => {
         // Verify if already exists
         let userModel;
         try {

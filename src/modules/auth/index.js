@@ -54,10 +54,9 @@ const configStrategies = () => {
       }
       
       // Check if the password is correct
-      const userPassword = userModel.get('password');
       const userObj = userModel.get({ plain: true });
 
-      if (!(await bcrypt.compare(password, userPassword))) {
+      if (!(await bcrypt.compare(password, userObj.password))) {
         return done(null, false);
       }
       delete userObj.password;

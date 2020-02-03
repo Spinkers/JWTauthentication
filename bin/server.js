@@ -11,8 +11,8 @@ const app = express();
 const port = 3000;
 app.set('port', port);
 
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(auth.initialize);
 auth.configStrategies();
